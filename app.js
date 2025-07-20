@@ -50,7 +50,6 @@ function aggiungiLiquido() {
   aggiornaStorico();
   aggiornaRiepilogo();
 }
-
 function datiUltime24Ore() {
   const ora = new Date();
   const cutoff = new Date(ora.getTime() - 24 * 60 * 60 * 1000);
@@ -92,7 +91,6 @@ function azzeraDati() {
     aggiornaRiepilogo();
   }
 }
-
 function esportaPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -151,7 +149,6 @@ function inviaEmail() {
 
   window.location.href = `mailto:${destinatario}?subject=${oggetto}&body=${corpo}`;
 }
-
 app.innerHTML = `
   <div class="banner">
     <img src="logo.png" alt="Logo Studio" class="logo" style="max-height: 60px; object-fit: contain;" />
@@ -226,8 +223,6 @@ app.innerHTML = `
 setInterval(aggiornaOrario, 1000);
 aggiornaStorico();
 aggiornaRiepilogo();
-
-
 
 
 
