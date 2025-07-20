@@ -2,7 +2,7 @@ const CACHE_NAME = 'diario-cache-v1';
 const PRECACHE_URLS = [
   './',
   './index.html',
-  './app.js',
+  // './app.js',  <-- RIMOSSO per evitare che venga cachato
   './style.css',
   './manifest.json',
   './icon-192.png',
@@ -35,6 +35,11 @@ self.addEventListener('activate', event => {
 
 // Risposte alle richieste: cache-first per risorse precache, fallback rete
 self.addEventListener('fetch', event => {
+  // Evita di cachare app.js
+  if (event.request.url.includes('app.js')) {
+    return fetch(event.request);
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(cached => {
@@ -46,7 +51,7 @@ self.addEventListener('fetch', event => {
             return response;
           }
 
-          // Clona PRIMA di usare la risposta - versione aggiornata
+          // Clona PRIMA di usare la risposta
           const responseToCache = response.clone();
 
           caches.open(CACHE_NAME)
@@ -63,3 +68,4 @@ self.addEventListener('fetch', event => {
       })
   );
 });
+
