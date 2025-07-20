@@ -46,7 +46,7 @@ self.addEventListener('fetch', event => {
             return response;
           }
 
-          // Clona PRIMA di usare la risposta
+          // Clona PRIMA di usare la risposta - versione aggiornata
           const responseToCache = response.clone();
 
           caches.open(CACHE_NAME)
