@@ -12,6 +12,12 @@ let minzioni = [];
 let liquidi = [];
 let nomePaziente = "";
 
+// Carica dati salvati
+const datiSalvatiMinzioni = localStorage.getItem('minzioni');
+const datiSalvatiLiquidi = localStorage.getItem('liquidi');
+if (datiSalvatiMinzioni) minzioni = JSON.parse(datiSalvatiMinzioni);
+if (datiSalvatiLiquidi) liquidi = JSON.parse(datiSalvatiLiquidi);
+
 function aggiornaOrario() {
   const orario = new Date().toLocaleTimeString('it-IT', {
     hour: '2-digit',
@@ -28,6 +34,7 @@ function aggiungiMinzione() {
   const volume = parseInt(document.getElementById('input-minzione').value);
   if (!volume) return;
   minzioni.push({ id: Date.now(), data: new Date(), volume });
+  localStorage.setItem('minzioni', JSON.stringify(minzioni));
   document.getElementById('input-minzione').value = '';
   aggiornaStorico();
   aggiornaRiepilogo();
@@ -38,6 +45,7 @@ function aggiungiLiquido() {
   const tipo = document.getElementById('tipo-liquido').value;
   if (!volume) return;
   liquidi.push({ id: Date.now(), data: new Date(), volume, tipo });
+  localStorage.setItem('liquidi', JSON.stringify(liquidi));
   document.getElementById('input-liquido').value = '';
   aggiornaStorico();
   aggiornaRiepilogo();
@@ -78,6 +86,8 @@ function azzeraDati() {
   if (confirm("Sei sicuro di voler azzerare tutti i dati?")) {
     minzioni = [];
     liquidi = [];
+    localStorage.removeItem('minzioni');
+    localStorage.removeItem('liquidi');
     aggiornaStorico();
     aggiornaRiepilogo();
   }
@@ -214,6 +224,9 @@ app.innerHTML = `
 `;
 
 setInterval(aggiornaOrario, 1000);
+aggiornaStorico();
+aggiornaRiepilogo();
+
 
 
 
