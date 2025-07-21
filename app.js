@@ -254,3 +254,10 @@ app.innerHTML = `
 setInterval(aggiornaOrario, 1000);
 aggiornaStorico();
 aggiornaRiepilogo();
+
+// Rimuove lo stato attivo dai bottoni su dispositivi touch
+document.querySelectorAll("button").forEach(button => {
+  button.addEventListener("touchend", () => {
+    button.blur();
+  });
+});
