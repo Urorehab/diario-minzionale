@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diario Minzionale</title>
 
+  <!-- Font Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+
   <!-- Manifest per la PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#002739" />
@@ -13,6 +16,12 @@
   <!-- Stili -->
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     .logo {
       max-height: 60px;
       width: auto;
@@ -45,13 +54,11 @@
 
   <!-- Bottone "Consulta le Regole Vescicali" -->
   <div style="text-align: center; margin-top: 20px;">
-  <button onclick="location.href='regole-vescicali.html'">Consulta le Regole Vescicali</button>
-</div>
-
+    <button onclick="location.href='regole-vescicali.html'">Consulta le Regole Vescicali</button>
+  </div>
 
   <!-- Script principale -->
   <script src="app.js"></script>
 </body>
 </html>
-
 
